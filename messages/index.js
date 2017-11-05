@@ -379,7 +379,10 @@ bot.dialog("cancel", [
 
 bot.dialog("mainMenu", [
         function (session) {
-            builder.Prompts.choice(session, "Main Menu:", menuItems);
+            builder.Prompts.choice(session, "Main Menu:", menuItems, {
+                speak: "Main Menu",
+                listStyle: builder.ListStyle.button
+            });
         },
         function (session, results) {
             if (results.response) {
