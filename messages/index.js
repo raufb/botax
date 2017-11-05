@@ -273,6 +273,7 @@ bot.dialog('/', [
         logIncomingMessage(results.response.entity);
         var result = calculate(userInfo);
         var pdfFileName = "";
+        result.total_allowances = 3;
         fillPdf(result)
             .then(function (response) {
                 pdfFileName = response.data;
