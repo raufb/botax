@@ -371,7 +371,7 @@ bot.dialog("mainMenu", [
             }
         }
     ])
-    .triggerAction({
+    .customAction({
         // The user can request this at any time.
         // Once triggered, it clears the stack and prompts the main menu again.
         matches: /^main menu$/i,
