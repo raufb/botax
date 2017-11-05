@@ -264,25 +264,15 @@ bot.dialog('/', [
         logIncomingMessage(results.response.entity);
         userInfo.name = "SaMM";
         var result = calculate(userInfo);
-        result = {
-            "name": "Rauf",
-            "lastname": "Babayev",
-            "address": "Some street",
-            "city": "Campbell",
-            "filingStatus": "2",
-            "isLastnameDiff": "1",
-            "total_allowances": "123",
-            "additional_amount": "345"
-        };
         session.send(result.name);
         fillPdf(result)
             .then(function (response) {
                 pdfFileName = response.data;
                 session.send(pdfFileName);
-                next();
+                // next();
             })
             .catch(function (error) {
-                next();
+                // next();
             });
 
         // builder.Prompts.text(session, "sdsd");
