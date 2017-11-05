@@ -270,11 +270,9 @@ bot.dialog('/', [
             .then(function (response) {
                 pdfFileName = response.data;
                 session.send(pdfFileName);
-                next();
             })
             .catch(function (error) {
                 session.send('error');
-                next();
             });
         var message = "Do you have any quesitons?";
         builder.Prompts.choice(session, message, promptChoices, {
