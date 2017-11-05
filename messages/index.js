@@ -308,7 +308,7 @@ bot.dialog('w4', [
     }
 ])
 
-bot.dialog("w1040", [
+bot.dialog("questions", [
     function (session) {
         session.send("Sorry. We don't have this option right now. Please choose another option!");
         session.beginDialog("mainMenu");
@@ -358,6 +358,26 @@ bot.dialog('children', [
     });
 
 
+bot.dialog('help', [
+        function (session) {
+            session.send("Please ask question");
+        }
+    ])
+    .triggerAction({
+        matches: /^help$/i,
+        confirmPrompt: "This will cancel your current request. Are you sure?"
+    });
+
+// bot.dialog('help', [
+//         function (session) {
+//             session.send("Please ask question");
+//         }
+//     ])
+//     .customAction({
+//         matches: /^help$/i,
+//         confirmPrompt: "This will cancel your current request. Are you sure?"
+//     });
+
 
 var menuItems = {
     "Fill W4 form": {
@@ -367,7 +387,7 @@ var menuItems = {
         item: "w1040"
     },
     "Ask quesiton": {
-        item: "questions"
+        item: "help"
     },
 }
 
