@@ -190,10 +190,10 @@ bot.dialog('/', [
     //     }
     // },
     function (session, results) {
-        if (!session.userData.isMarried || !results) {
-            session.userData.spending = promptChoices[results.response.entity];
-            logIncomingMessage(results.response.entity);
-        }
+        // if (!session.userData.isMarried || !results) {
+        //     session.userData.spending = promptChoices[results.response.entity];
+        //     logIncomingMessage(results.response.entity);
+        // }
         var message = "How many kids do you have?";
         logOutgoingMessage(message);
         builder.Prompts.text(session, message);
