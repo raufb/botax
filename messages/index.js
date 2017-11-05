@@ -274,7 +274,7 @@ bot.dialog('/', [
                     attachments: [{
                         contentType: 'application/pdf',
                         contentUrl: 'http://13.88.28.1:8443' + pdfFileName,
-                        name: 'W-4 form.pdf'
+                        name: '2017 Form W-4'
                     }]
                 });
             })
