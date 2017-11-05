@@ -36,7 +36,7 @@ var paymentFrequencyChoice = {
 
 var userInfo = {
     name: 'Sam',
-    lastName: 'Ahm',
+    lastname: 'Ahm',
     isLastnameDiff: false,
     address: 'TEST',
     city: 'TEST',
