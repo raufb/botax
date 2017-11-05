@@ -160,11 +160,12 @@ bot.dialog('/', [
         if (session.userData.isMarried) {
             session.userData.isFillingJointly = promptChoices[results.response.entity];
             logIncomingMessage(results.response.entity);
-            var message = "Is your spouse working?";
-            logOutgoingMessage(message);
-            builder.Prompts.choice(session, message, promptChoices, {
-                listStyle: builder.ListStyle.button
-            });
+            next();
+            // var message = "Is your spouse working?";
+            // logOutgoingMessage(message);
+            // builder.Prompts.choice(session, message, promptChoices, {
+            //     listStyle: builder.ListStyle.button
+            // });
         } else {
             next();
         }
