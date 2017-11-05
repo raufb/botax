@@ -261,7 +261,6 @@ bot.dialog('/', [
     function (session, results) {
         session.userData.isDependent = promptChoices[results.response.entity];
         logIncomingMessage(results.response.entity);
-        userInfo.name = "SaMM";
         var result = calculate(userInfo);
         session.send(result.name);
         var pdfFileName = "";
@@ -273,7 +272,7 @@ bot.dialog('/', [
                     attachments: [{
                         contentType: 'application/pdf',
                         contentUrl: 'http://13.88.28.1:8443' + pdfFileName,
-                        name: pdfFileName
+                        name: '2017 Form w-4'
                     }]
                 });
             })
