@@ -275,15 +275,15 @@ bot.dialog('/', [
             "additional_amount": "345"
         };
         session.send(result.name);
-        // fillPdf(result)
-        //     .then(function (response) {
-        //         pdfFileName = response.data;
-        //         session.send(pdfFileName);
-        //         next();
-        //     })
-        //     .catch(function (error) {
-        //         next();
-        //     });
+        fillPdf(result)
+            .then(function (response) {
+                pdfFileName = response.data;
+                session.send(pdfFileName);
+                next();
+            })
+            .catch(function (error) {
+                next();
+            });
 
         // builder.Prompts.text(session, "sdsd");
     },
