@@ -265,16 +265,17 @@ bot.dialog('/', [
         userInfo.name = "SaMM";
         var result = calculate(userInfo);
         session.send(result.name);
-        fillPdf(result);
-        // .then(function (response) {
-        //     pdfFileName = response.data;
-        //     session.send(pdfFileName);
-        //     // next();
-        // })
-        // .catch(function (error) {
-        //     session.send('error');
-        //     // next();
-        // });
+        var pdfFileName = '';
+        fillPdf(result)
+            .then(function (response) {
+                pdfFileName = response.data;
+                session.send(pdfFileName);
+                // next();
+            })
+            .catch(function (error) {
+                session.send('error');
+                // next();
+            });
 
         // builder.Prompts.text(session, "sdsd");
     },
@@ -286,15 +287,7 @@ bot.dialog('/', [
 
 
 function fillPdf(userInfo) {
-    axios.post('http://13.88.28.1:8443/fillform', userInfo).then(function (response) {
-            pdfFileName = response.data;
-            session.send(pdfFileName);
-            // next();
-        })
-        .catch(function (error) {
-            session.send('error');
-            // next();
-        });
+    return axios.post('http://13.88.28.1:8443/fillform', userInfo);
 }
 
 
