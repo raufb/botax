@@ -197,13 +197,13 @@ bot.dialog('/', [
         logOutgoingMessage(message);
         builder.Prompts.text(session, message);
     },
-    // function (session, results) {
-    //     userInfo.numberOfKids = results.response;
-    //     logIncomingMessage(results.response);
-    //     var message = "What is your first job income?";
-    //     logOutgoingMessage(message);
-    //     builder.Prompts.text(session, message);
-    // },
+    function (session, results) {
+        userInfo.numberOfKids = results.response;
+        logIncomingMessage(results.response);
+        var message = "What is your first job income?";
+        logOutgoingMessage(message);
+        builder.Prompts.text(session, message);
+    },
     // function (session, results) {
     //     userInfo.income_first = results.response;
     //     logIncomingMessage(results.response);
@@ -267,7 +267,7 @@ bot.dialog('/', [
         fillPdf(result)
             .then(function (response) {
                 pdfFileName = response.data;
-                session.send("Created file" + 'http://13.88.28.1:8443' + pdfFileName);
+                session.send("Created file " + 'http://13.88.28.1:8443' + pdfFileName);
             })
             .catch(function (error) {
                 session.send('error');
@@ -370,19 +370,19 @@ bot.dialog("mainMenu", [
 function logOutgoingMessage(message) {
     var messageForDashbot = {
         "text": message,
-        "userId": userId,
-        "conversationId": conversationId,
+        "userId": "12345",
+        "conversationId": "123456789",
     };
-    // dashbot.logOutgoing(messageForDashbot);
+    dashbot.logOutgoing(messageForDashbot);
 }
 
 function logIncomingMessage(message) {
     var messageForDashbot = {
         "text": message,
-        "userId": userId,
-        "conversationId": conversationId,
+        "userId": "12345",
+        "conversationId": "123456789",
     };
-    // dashbot.logIncoming(messageForDashbot);
+    dashbot.logIncoming(messageForDashbot);
 }
 
 const logUserConversation = (event) => {
