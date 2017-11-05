@@ -232,18 +232,18 @@ bot.dialog('/', [
         next();
     },
     function (session, results) {
-        if (results.response) {
-            userInfo.income_second = results.response;
+        // if (results.response) {
+        //     userInfo.income_second = results.response;
+        // } else {
+        if (userInfo.hasMultipleJobs) {
+            var message = "What is your second job income?";
+            logOutgoingMessage(message);
+            builder.Prompts.number(session, message);
         } else {
-            if (userInfo.hasMultipleJobs) {
-                var message = "What is your second job income?";
-                logOutgoingMessage(message);
-                builder.Prompts.number(session, message);
-            } else {
-                userInfo.income_second = 0;
-                next();
-            }
+            userInfo.income_second = 0;
+            next();
         }
+        // }
     },
     // function (session, results) {
     //     if (!userInfo.income_second && results.response) {
