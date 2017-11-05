@@ -188,16 +188,15 @@ bot.dialog('/', [
     //         });
     //     }
     // },
-    // function (session, results) {
-    //     session.send("hoW MANY KIDS");
-    //     if (!session.userData.isMarried || !results) {
-    //         userInfo.spending = promptChoices[results.response.entity];
-    //         logIncomingMessage(results.response.entity);
-    //     }
-    //     var message = "How many kids do you have?";
-    //     logOutgoingMessage(message);
-    //     builder.Prompts.text(session, message);
-    // },
+    function (session, results) {
+        if (!session.userData.isMarried || !results) {
+            userInfo.spending = promptChoices[results.response.entity];
+            logIncomingMessage(results.response.entity);
+        }
+        var message = "How many kids do you have?";
+        logOutgoingMessage(message);
+        builder.Prompts.text(session, message);
+    },
     // function (session, results) {
     //     userInfo.numberOfKids = results.response;
     //     logIncomingMessage(results.response);
@@ -274,7 +273,7 @@ bot.dialog('/', [
                     attachments: [{
                         contentType: 'application/pdf',
                         contentUrl: 'http://13.88.28.1:8443' + pdfFileName,
-                        name: '2017 Form W-4'
+                        name: pdfFileName
                     }]
                 });
             })
