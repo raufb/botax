@@ -74,7 +74,9 @@ bot.dialog('/', [
         session.send(message);
         var message = 'What is your lastname?';
         logOutgoingMessage(message);
-        builder.Prompts.text(session, message, {speak: message});
+        builder.Prompts.text(session, message, {
+            speak: message
+        });
     },
     function (session, results) {
         session.userData.lastname = results.response;
@@ -83,7 +85,7 @@ bot.dialog('/', [
         var options = "yes |no";
         logOutgoingMessage(message);
         builder.Prompts.choice(session, message, promptChoices, {
-	    speak: message,
+            speak: message,
             listStyle: builder.ListStyle.button
         });
         session.userData.isLastnameDiff = results.response;
@@ -161,15 +163,15 @@ bot.dialog('/', [
         if (session.userData.isMarried) {
             session.userData.isFillingJointly = promptChoices[results.response.entity];
             logIncomingMessage(results.response.entity);
-            next();
             // var message = "Is your spouse working?";
             // logOutgoingMessage(message);
             // builder.Prompts.choice(session, message, promptChoices, {
             //     listStyle: builder.ListStyle.button
             // });
         } else {
-            next();
+
         }
+        next();
     },
     // function (session, results) {
     //     session.send(results);
@@ -189,7 +191,7 @@ bot.dialog('/', [
     //         });
     //     }
     // },
-    function (session, results) {
+    function (session) {
         // if (!session.userData.isMarried || !results) {
         //     session.userData.spending = promptChoices[results.response.entity];
         //     logIncomingMessage(results.response.entity);
