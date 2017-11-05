@@ -203,7 +203,7 @@ bot.dialog('/', [
     //         });
     //     }
     // },
-    function (session) {
+    function (session, results) {
         if (!userInfo.isMarried || !results) {
             userInfo.spending = promptChoices[results.response.entity];
             logIncomingMessage(results.response.entity);
