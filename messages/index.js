@@ -67,9 +67,9 @@ bot.dialog('/', [
         });
     },
     function (session, results) {
-        session.userData.name = results.response;
+        userInfo.name = results.response;
         logIncomingMessage(results.response);
-        var message = "Hi " + session.userData.name + ". I'm here to help you with filling W-4 form! You just need to answer couple of quesitons!";
+        var message = "Hi " + userInfo.name + ". I'm here to help you with filling W-4 form! You just need to answer couple of quesitons!";
         logOutgoingMessage(message);
         session.send(message);
         var message = 'What is your lastname?';
@@ -79,7 +79,7 @@ bot.dialog('/', [
         });
     },
     function (session, results) {
-        session.userData.lastname = results.response;
+        userInfo.lastname = results.response;
         logIncomingMessage(results.response);
         var message = "Is your name is different than on SSN?";
         var options = "yes |no";
@@ -88,10 +88,10 @@ bot.dialog('/', [
             speak: message,
             listStyle: builder.ListStyle.button
         });
-        session.userData.isLastnameDiff = results.response;
+        userInfo.isLastnameDiff = results.response;
     },
     function (session, results) {
-        session.userData.isLastnameDiff = promptChoices[results.response.entity];
+        userInfo.isLastnameDiff = promptChoices[results.response.entity];
         logIncomingMessage(results.response.entity);
         var message = "What is your street addres?";
         logOutgoingMessage(message);
@@ -100,7 +100,7 @@ bot.dialog('/', [
         });
     },
     function (session, results) {
-        session.userData.address = results.response;
+        userInfo.address = results.response;
         logIncomingMessage(results.response);
         var message = "What is your city?";
         logOutgoingMessage(message);
@@ -109,7 +109,7 @@ bot.dialog('/', [
         });
     },
     function (session, results) {
-        session.userData.city = results.response;
+        userInfo.city = results.response;
         logIncomingMessage(results.response);
         var message = "What is your state?";
         logOutgoingMessage(message);
@@ -118,7 +118,7 @@ bot.dialog('/', [
         });
     },
     function (session, results) {
-        session.userData.state = results.response;
+        userInfo.state = results.response;
         logIncomingMessage(results.response);
         var message = "What is your zipcode?";
         logOutgoingMessage(message);
@@ -127,7 +127,7 @@ bot.dialog('/', [
         });
     },
     function (session, results) {
-        session.userData.zip = results.response;
+        userInfo.zip = results.response;
         logIncomingMessage(results.response);
         var message = "How frequently are you paid?";
         builder.Prompts.choice(session, message, paymentFrequencyChoice, {
@@ -137,7 +137,7 @@ bot.dialog('/', [
         logOutgoingMessage(message);
     },
     function (session, results) {
-        session.userData.paymentFrequency = paymentFrequencyChoice[results.response.entity];
+        userInfo.paymentFrequency = paymentFrequencyChoice[results.response.entity];
         logIncomingMessage(results.response.entity);
         var message = "Do you have more than 1 jobs?";
         logOutgoingMessage(message);
@@ -147,7 +147,7 @@ bot.dialog('/', [
         });
     },
     function (session, results) {
-        session.userData.hasMultipleJobs = promptChoices[results.response.entity];
+        userInfo.hasMultipleJobs = promptChoices[results.response.entity];
         logIncomingMessage(results.response.entity);
         var message = "Are you married?";
         logOutgoingMessage(message);
@@ -157,9 +157,9 @@ bot.dialog('/', [
         });
     },
     function (session, results) {
-        session.userData.isMarried = promptChoices[results.response.entity];
+        userInfo.isMarried = promptChoices[results.response.entity];
         logIncomingMessage(results.response.entity);
-        if (session.userData.isMarried) {
+        if (userInfo.isMarried) {
             logIncomingMessage(results.response.entity);
             var message = "Are you filling jointly?";
             logOutgoingMessage(message);
@@ -172,8 +172,8 @@ bot.dialog('/', [
         }
     },
     function (session, results) {
-        if (session.userData.isMarried) {
-            session.userData.isFillingJointly = promptChoices[results.response.entity];
+        if (userInfo.isMarried) {
+            userInfo.isFillingJointly = promptChoices[results.response.entity];
             logIncomingMessage(results.response.entity);
             var message = "Is your spouse working?";
             logOutgoingMessage(message);
@@ -192,7 +192,7 @@ bot.dialog('/', [
     //         session.send(results.response.entity);
     //         userInfo.hasWorkingSpouse = promptChoices[results.response.entity];
     //     }
-    //     if (session.userData.isMarried) {
+    //     if (userInfo.isMarried) {
     //         next();
     //     } else {
     //         session.send("test");
@@ -204,8 +204,8 @@ bot.dialog('/', [
     //     }
     // },
     function (session) {
-        if (!session.userData.isMarried || !results) {
-            session.userData.spending = promptChoices[results.response.entity];
+        if (!userInfo.isMarried || !results) {
+            userInfo.spending = promptChoices[results.response.entity];
             logIncomingMessage(results.response.entity);
         }
         var message = "How many kids do you have?";
@@ -213,16 +213,16 @@ bot.dialog('/', [
         builder.Prompts.text(session, message);
     },
     function (session, results) {
-        session.userData.numberOfKids = results.response;
+        userInfo.numberOfKids = results.response;
         logIncomingMessage(results.response);
         var message = "What is your first job income?";
         logOutgoingMessage(message);
         builder.Prompts.text(session, message);
     },
     function (session, results) {
-        session.userData.income_first = results.response;
+        userInfo.income_first = results.response;
         logIncomingMessage(results.response);
-        if (session.userData.isMarried) {
+        if (userInfo.isMarried) {
             var message = "Do your spouce work? If yes what is her/his income?";
             logOutgoingMessage(message);
             builder.Prompts.number(session, message);
@@ -232,40 +232,40 @@ bot.dialog('/', [
     },
     function (session, results) {
         if (results.response) {
-            session.userData.income_second = results.response;
+            userInfo.income_second = results.response;
         } else {
-            if (session.userData.hasMultipleJobs) {
+            if (userInfo.hasMultipleJobs) {
                 var message = "What is your second job income?";
                 logOutgoingMessage(message);
                 builder.Prompts.number(session, message);
             } else {
-                session.userData.income_second = 0;
+                userInfo.income_second = 0;
                 next();
             }
         }
     },
     // function (session, results) {
-    //     if (!session.userData.income_second && results.response) {
-    //         session.userData.income_second = results.response;
+    //     if (!userInfo.income_second && results.response) {
+    //         userInfo.income_second = results.response;
     //     }
     //     var message = "How many dependents do you have other than kid dependents?";
     //     logOutgoingMessage(message);
     //     builder.Prompts.number(session, message);
     // },
     // function (session, results) {
-    //     session.userData.numberOfOtherDependents = results.response;
-    //     if (session.userData.numberOfKids > 0) {
+    //     userInfo.numberOfOtherDependents = results.response;
+    //     if (userInfo.numberOfKids > 0) {
     //         var message = "Do you plan to spend more than 2000 on child care?";
     //         logOutgoingMessage(message);
     //         builder.Prompts.text(session, message);
     //     } else {
-    //         session.userData.dependentCare = 0;
+    //         userInfo.dependentCare = 0;
     //         next();
     //     }
     // },
     // function (session, results) {
     //     if (results.response) {
-    //         session.userData.dependentCare = results.response;
+    //         userInfo.dependentCare = results.response;
     //     }
     //     var message = "Can someone claim you as dependent?";
     //     logOutgoingMessage(message);
@@ -274,7 +274,7 @@ bot.dialog('/', [
     //     });
     // },
     function (session, results) {
-        session.userData.isDependent = promptChoices[results.response.entity];
+        userInfo.isDependent = promptChoices[results.response.entity];
         logIncomingMessage(results.response.entity);
         var result = calculate(userInfo);
         session.send(result.name);
@@ -299,7 +299,7 @@ bot.dialog('/', [
         if (ok) {
             // TODO go to qa
         } else {
-            message = `Thank you ${session.userData.name}! Let me know if you need help!`;
+            message = `Thank you ${userInfo.name}! Let me know if you need help!`;
             session.send(message);
         }
         session.endDialog();
