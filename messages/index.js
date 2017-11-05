@@ -59,7 +59,9 @@ bot.localePath(path.join(__dirname, './locale'));
 bot.set(`persistUserData`, true);
 
 bot.dialog("/", [
-    session.beginDialog("mainMenu")
+    function (session) {
+        session.beginDialog("mainMenu")
+    }
 ]);
 
 bot.dialog('w4', [
