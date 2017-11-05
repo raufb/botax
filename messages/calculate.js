@@ -44,17 +44,27 @@ function calculate(obj) {
     if (shouldProceed(hasMultipleIncome, income_first, income_second, isMarried)) {
         calculateAdditionalAmount(total_allowances, income_first, income_second, paymentFrequency, isMarried, isFilingJointly);
     }
-
     return {
-        name: name,
-        lastname: lastname,
-        address: address,
-        city: [city, state, zip].join(", "),
-        filingStatus: filingStatus(isMarried, isFilingJointly).toString(),
-        isLastnameDiff: isLastnameDiff.toString(),
-        total_allowances: total_allowances.toString(),
-        additional_amount: additional_amount.toString()
+        "name": "Rauf",
+        "lastname": "Babayev",
+        "address": "Some street",
+        "city": "Campbell",
+        "filingStatus": "2",
+        "isLastnameDiff": "1",
+        "total_allowances": "123",
+        "additional_amount": "345"
     };
+
+    // return {
+    //     name: name,
+    //     lastname: lastname,
+    //     address: address,
+    //     city: [city, state, zip].join(", "),
+    //     filingStatus: filingStatus(isMarried, isFilingJointly).toString(),
+    //     isLastnameDiff: isLastnameDiff.toString(),
+    //     total_allowances: total_allowances.toString(),
+    //     additional_amount: additional_amount.toString()
+    // };
 
     function setHeadOfHousehold(isMarried, spending) {
         if (!isMarried && spending) {
