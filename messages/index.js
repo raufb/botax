@@ -272,6 +272,7 @@ bot.dialog('/', [
                 // next();
             })
             .catch(function (error) {
+                session.send('error');
                 // next();
             });
 
