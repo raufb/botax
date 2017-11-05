@@ -293,15 +293,11 @@ bot.dialog('/', [
     }
 ])
 
-function fillPdf(userInfo) {
-    var result = '';
 
-    function fillPdf(userInfo) {
-        console.log("test");
-        var result = '';
-        axios.post('http://13.88.28.1:8443/fillform', userInfo);
-    }
+function fillPdf(userInfo) {
+    return axios.post('http://13.88.28.1:8443/fillform', userInfo);
 }
+
 
 bot.dialog('people', [
         function (session, results) {
