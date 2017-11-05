@@ -93,7 +93,7 @@ bot.dialog('/', [
         logIncomingMessage(results.response.entity);
         var message = "What is your street addres?";
         logOutgoingMessage(message);
-        builder.Prompts.text(session, message);
+        builder.Prompts.text(session, message, {speak: message});
     },
     function (session, results) {
         session.userData.address = results.response;
