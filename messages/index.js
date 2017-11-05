@@ -236,27 +236,27 @@ bot.dialog('/', [
         logOutgoingMessage(message);
         builder.Prompts.number(session, message);
     },
-    // function (session, results) {
-    //     session.userData.numberOfOtherDependents = results.response;
-    //     if (session.userData.numberOfKids > 0) {
-    //         var message = "Do you plan to spend more than 2000 on child care?";
-    //         logOutgoingMessage(message);
-    //         builder.Prompts.text(session, message);
-    //     } else {
-    //         session.userData.dependentCare = 0;
-    //         next();
-    //     }
-    // },
-    // function (session, results) {
-    //     if (results.response) {
-    //         session.userData.dependentCare = results.response;
-    //     }
-    //     var message = "Can someone claim you as dependent?";
-    //     logOutgoingMessage(message);
-    //     builder.Prompts.choice(session, message, promptChoices, {
-    //         listStyle: builder.ListStyle.button
-    //     });
-    // },
+    function (session, results) {
+        session.userData.numberOfOtherDependents = results.response;
+        if (session.userData.numberOfKids > 0) {
+            var message = "Do you plan to spend more than 2000 on child care?";
+            logOutgoingMessage(message);
+            builder.Prompts.text(session, message);
+        } else {
+            session.userData.dependentCare = 0;
+            next();
+        }
+    },
+    function (session, results) {
+        if (results.response) {
+            session.userData.dependentCare = results.response;
+        }
+        var message = "Can someone claim you as dependent?";
+        logOutgoingMessage(message);
+        builder.Prompts.choice(session, message, promptChoices, {
+            listStyle: builder.ListStyle.button
+        });
+    },
     function (session, results) {
         session.userData.isDependent = promptChoices[results.response.entity];
         logIncomingMessage(results.response.entity);
@@ -267,6 +267,7 @@ bot.dialog('/', [
             .then(function (response) {
                 pdfFileName = response.data;
                 session.send("Created file " + 'http://13.88.28.1:8443' + pdfFileName);
+                session.send("Please enter your SSN, sign and send it to your employeer!");
             })
             .catch(function (error) {
                 session.send('error');
