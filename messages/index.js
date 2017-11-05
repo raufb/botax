@@ -222,7 +222,7 @@ bot.dialog('/', [
     function (session, results) {
         userInfo.income_first = results.response;
         logIncomingMessage(results.response);
-        if (userInfo.isMarried && userInfo.hasWorkingSpouse) {
+        if (userInfo.isMarried) {
             var message = "What is your spouse income?";
             logOutgoingMessage(message);
             builder.Prompts.number(session, message);
