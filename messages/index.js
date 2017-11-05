@@ -95,35 +95,43 @@ bot.dialog('/', [
         logIncomingMessage(results.response.entity);
         var message = "What is your street addres?";
         logOutgoingMessage(message);
-        builder.Prompts.text(session, message, {speak: message});
+        builder.Prompts.text(session, message, {
+            speak: message
+        });
     },
     function (session, results) {
         session.userData.address = results.response;
         logIncomingMessage(results.response);
         var message = "What is your city?";
         logOutgoingMessage(message);
-        builder.Prompts.text(session, message, {speak: message});
+        builder.Prompts.text(session, message, {
+            speak: message
+        });
     },
     function (session, results) {
         session.userData.city = results.response;
         logIncomingMessage(results.response);
         var message = "What is your state?";
         logOutgoingMessage(message);
-        builder.Prompts.text(session, message, {speak: message});
+        builder.Prompts.text(session, message, {
+            speak: message
+        });
     },
     function (session, results) {
         session.userData.state = results.response;
         logIncomingMessage(results.response);
         var message = "What is your zipcode?";
         logOutgoingMessage(message);
-        builder.Prompts.text(session, message, {speak: message});
+        builder.Prompts.text(session, message, {
+            speak: message
+        });
     },
     function (session, results) {
         session.userData.zip = results.response;
         logIncomingMessage(results.response);
         var message = "How frequently are you paid?";
         builder.Prompts.choice(session, message, paymentFrequencyChoice, {
-	    speak: message,
+            speak: message,
             listStyle: builder.ListStyle.button
         });
         logOutgoingMessage(message);
@@ -134,7 +142,7 @@ bot.dialog('/', [
         var message = "Do you have more than 1 jobs?";
         logOutgoingMessage(message);
         builder.Prompts.choice(session, message, promptChoices, {
-	    speak: message,
+            speak: message,
             listStyle: builder.ListStyle.button
         });
     },
@@ -144,7 +152,7 @@ bot.dialog('/', [
         var message = "Are you married?";
         logOutgoingMessage(message);
         builder.Prompts.choice(session, message, promptChoices, {
-	    speak: message,
+            speak: message,
             listStyle: builder.ListStyle.button
         });
     },
@@ -156,7 +164,7 @@ bot.dialog('/', [
             var message = "Are you filling jointly?";
             logOutgoingMessage(message);
             builder.Prompts.choice(session, message, promptChoices, {
-		speak: message,
+                speak: message,
                 listStyle: builder.ListStyle.button
             });
         } else {
@@ -164,7 +172,7 @@ bot.dialog('/', [
         }
     },
     function (session, results) {
-        if (session.userData.isMarried) {
+        if (results && results.response && session.userData.isMarried) {
             session.userData.isFillingJointly = promptChoices[results.response.entity];
             logIncomingMessage(results.response.entity);
             // var message = "Is your spouse working?";
