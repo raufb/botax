@@ -269,7 +269,14 @@ bot.dialog('/', [
         fillPdf(result)
             .then(function (response) {
                 pdfFileName = response.data;
-                session.send(pdfFileName);
+                session.send({
+                    text: "You sent:",
+                    attachments: [{
+                        contentType: 'application/pdf',
+                        contentUrl: 'http://13.88.28.1:8443/' + pdfFileName,
+                        name: 'w-4 form.pdf'
+                    }]
+                });
             })
             .catch(function (error) {
                 session.send('error');
