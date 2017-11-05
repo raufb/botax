@@ -57,7 +57,7 @@ var userInfo = {
 }
 bot.localePath(path.join(__dirname, './locale'));
 bot.set(`persistUserData`, true);
-bot.dialog('/', [
+bot.dialog('w4', [
     function (session) {
         var message = "What is your name?";
         logOutgoingMessage(message);
@@ -346,17 +346,14 @@ bot.dialog('children', [
 
 
 var menuItems = {
-    "Order dinner": {
-        item: "orderDinner"
+    "Fill W-4 form": {
+        item: "w4"
     },
-    "Dinner reservation": {
-        item: "dinnerReservation"
+    "Fill W-1040 form": {
+        item: "w1040"
     },
-    "Schedule shuttle": {
-        item: "scheduleShuttle"
-    },
-    "Request wake-up call": {
-        item: "wakeupCall"
+    "Ask quesiton": {
+        item: "questions"
     },
 }
 
