@@ -359,7 +359,12 @@ var menuItems = {
 
 bot.dialog("/", [
     function (session) {
-        session.beginDialog('mainMenu')
+        builder.Prompts.choice(session, "Main Menu:", menuItems);
+    },
+    function (session, results) {
+        if (results.response) {
+            session.beginDialog(menuItems[results.response.entity].item);
+        }
     }
 ]);
 
