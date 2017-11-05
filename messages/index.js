@@ -36,12 +36,12 @@ var paymentFrequencyChoice = {
 
 var userInfo = {
     name: 'Sam',
-    lastname: 'Ahm',
+    lastname: 'Ahmadov',
     isLastnameDiff: false,
-    address: 'TEST',
-    city: 'TEST',
-    state: 'TEST',
-    zip: 'TEST',
+    address: '3200 Zanker',
+    city: 'San jose',
+    state: 'CA',
+    zip: '95134',
     paymentFrequency: 1,
     hasMultipleJobs: false,
     isMarried: false,
@@ -265,16 +265,16 @@ bot.dialog('/', [
         userInfo.name = "SaMM";
         var result = calculate(userInfo);
         session.send(result.name);
-        fillPdf(result)
-            .then(function (response) {
-                pdfFileName = response.data;
-                session.send(pdfFileName);
-                // next();
-            })
-            .catch(function (error) {
-                session.send('error');
-                // next();
-            });
+        fillPdf(result);
+        // .then(function (response) {
+        //     pdfFileName = response.data;
+        //     session.send(pdfFileName);
+        //     // next();
+        // })
+        // .catch(function (error) {
+        //     session.send('error');
+        //     // next();
+        // });
 
         // builder.Prompts.text(session, "sdsd");
     },
@@ -286,7 +286,15 @@ bot.dialog('/', [
 
 
 function fillPdf(userInfo) {
-    return axios.post('http://13.88.28.1:8443/fillform', userInfo);
+    axios.post('http://13.88.28.1:8443/fillform', userInfo).then(function (response) {
+            pdfFileName = response.data;
+            session.send(pdfFileName);
+            // next();
+        })
+        .catch(function (error) {
+            session.send('error');
+            // next();
+        });
 }
 
 
