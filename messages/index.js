@@ -44,8 +44,8 @@ var userInfo = {
     zip: '95134',
     paymentFrequency: 1,
     hasMultipleJobs: false,
-    isMarried: false,
-    isFillingJointly: false,
+    isMarried: true,
+    isFillingJointly: true,
     hasWorkingSpouse: false,
     spending: false,
     numberOfKids: 0,
@@ -222,8 +222,8 @@ bot.dialog('/', [
     function (session, results) {
         userInfo.income_first = results.response;
         logIncomingMessage(results.response);
-        if (userInfo.isMarried) {
-            var message = "Do your spouse work? If yes what is her/his income?";
+        if (userInfo.isMarried && userInfo.hasWorkingSpouse) {
+            var message = "What is your spouse income?";
             logOutgoingMessage(message);
             builder.Prompts.number(session, message);
         } else {
@@ -277,7 +277,6 @@ bot.dialog('/', [
         userInfo.isDependent = promptChoices[results.response.entity];
         logIncomingMessage(results.response.entity);
         var result = calculate(userInfo);
-        session.send(result.name);
         var pdfFileName = "";
         fillPdf(result)
             .then(function (response) {
