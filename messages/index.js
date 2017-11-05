@@ -74,7 +74,7 @@ bot.dialog('/', [
         session.send(message);
         var message = 'What is your lastname?';
         logOutgoingMessage(message);
-        builder.Prompts.text(session, message);
+        builder.Prompts.text(session, message, {speak: message});
     },
     function (session, results) {
         session.userData.lastname = results.response;
@@ -83,6 +83,7 @@ bot.dialog('/', [
         var options = "yes |no";
         logOutgoingMessage(message);
         builder.Prompts.choice(session, message, promptChoices, {
+	    speak: message,
             listStyle: builder.ListStyle.button
         });
         session.userData.isLastnameDiff = results.response;
