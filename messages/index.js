@@ -102,27 +102,28 @@ bot.dialog('/', [
         logIncomingMessage(results.response);
         var message = "What is your city?";
         logOutgoingMessage(message);
-        builder.Prompts.text(session, message);
+        builder.Prompts.text(session, message, {speak: message});
     },
     function (session, results) {
         session.userData.city = results.response;
         logIncomingMessage(results.response);
         var message = "What is your state?";
         logOutgoingMessage(message);
-        builder.Prompts.text(session, message);
+        builder.Prompts.text(session, message, {speak: message});
     },
     function (session, results) {
         session.userData.state = results.response;
         logIncomingMessage(results.response);
         var message = "What is your zipcode?";
         logOutgoingMessage(message);
-        builder.Prompts.text(session, message);
+        builder.Prompts.text(session, message, {speak: message});
     },
     function (session, results) {
         session.userData.zip = results.response;
         logIncomingMessage(results.response);
         var message = "How frequently are you paid?";
         builder.Prompts.choice(session, message, paymentFrequencyChoice, {
+	    speak: message,
             listStyle: builder.ListStyle.button
         });
         logOutgoingMessage(message);
@@ -133,6 +134,7 @@ bot.dialog('/', [
         var message = "Do you have more than 1 jobs?";
         logOutgoingMessage(message);
         builder.Prompts.choice(session, message, promptChoices, {
+	    speak: message,
             listStyle: builder.ListStyle.button
         });
     },
@@ -142,6 +144,7 @@ bot.dialog('/', [
         var message = "Are you married?";
         logOutgoingMessage(message);
         builder.Prompts.choice(session, message, promptChoices, {
+	    speak: message,
             listStyle: builder.ListStyle.button
         });
     },
@@ -153,6 +156,7 @@ bot.dialog('/', [
             var message = "Are you filling jointly?";
             logOutgoingMessage(message);
             builder.Prompts.choice(session, message, promptChoices, {
+		speak: message,
                 listStyle: builder.ListStyle.button
             });
         } else {
