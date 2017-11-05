@@ -273,8 +273,8 @@ bot.dialog('/', [
                     text: "You sent:",
                     attachments: [{
                         contentType: 'application/pdf',
-                        contentUrl: 'http://13.88.28.1:8443/' + pdfFileName,
-                        name: 'w-4 form.pdf'
+                        contentUrl: 'http://13.88.28.1:8443' + pdfFileName,
+                        name: 'W-4 form.pdf'
                     }]
                 });
             })
