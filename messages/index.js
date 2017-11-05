@@ -172,14 +172,14 @@ bot.dialog('/', [
         }
     },
     function (session, results) {
-        if (results && results.response && session.userData.isMarried) {
+        if (session.userData.isMarried) {
             session.userData.isFillingJointly = promptChoices[results.response.entity];
             logIncomingMessage(results.response.entity);
-            // var message = "Is your spouse working?";
-            // logOutgoingMessage(message);
-            // builder.Prompts.choice(session, message, promptChoices, {
-            //     listStyle: builder.ListStyle.button
-            // });
+            var message = "Is your spouse working?";
+            logOutgoingMessage(message);
+            builder.Prompts.choice(session, message, promptChoices, {
+                listStyle: builder.ListStyle.button
+            });
         } else {
 
         }
@@ -204,10 +204,10 @@ bot.dialog('/', [
     //     }
     // },
     function (session) {
-        // if (!session.userData.isMarried || !results) {
-        //     session.userData.spending = promptChoices[results.response.entity];
-        //     logIncomingMessage(results.response.entity);
-        // }
+        if (!session.userData.isMarried || !results) {
+            session.userData.spending = promptChoices[results.response.entity];
+            logIncomingMessage(results.response.entity);
+        }
         var message = "How many kids do you have?";
         logOutgoingMessage(message);
         builder.Prompts.text(session, message);
@@ -244,35 +244,35 @@ bot.dialog('/', [
             }
         }
     },
-    function (session, results) {
-        if (!session.userData.income_second && results.response) {
-            session.userData.income_second = results.response;
-        }
-        var message = "How many dependents do you have other than kid dependents?";
-        logOutgoingMessage(message);
-        builder.Prompts.number(session, message);
-    },
-    function (session, results) {
-        session.userData.numberOfOtherDependents = results.response;
-        if (session.userData.numberOfKids > 0) {
-            var message = "Do you plan to spend more than 2000 on child care?";
-            logOutgoingMessage(message);
-            builder.Prompts.text(session, message);
-        } else {
-            session.userData.dependentCare = 0;
-            next();
-        }
-    },
-    function (session, results) {
-        if (results.response) {
-            session.userData.dependentCare = results.response;
-        }
-        var message = "Can someone claim you as dependent?";
-        logOutgoingMessage(message);
-        builder.Prompts.choice(session, message, promptChoices, {
-            listStyle: builder.ListStyle.button
-        });
-    },
+    // function (session, results) {
+    //     if (!session.userData.income_second && results.response) {
+    //         session.userData.income_second = results.response;
+    //     }
+    //     var message = "How many dependents do you have other than kid dependents?";
+    //     logOutgoingMessage(message);
+    //     builder.Prompts.number(session, message);
+    // },
+    // function (session, results) {
+    //     session.userData.numberOfOtherDependents = results.response;
+    //     if (session.userData.numberOfKids > 0) {
+    //         var message = "Do you plan to spend more than 2000 on child care?";
+    //         logOutgoingMessage(message);
+    //         builder.Prompts.text(session, message);
+    //     } else {
+    //         session.userData.dependentCare = 0;
+    //         next();
+    //     }
+    // },
+    // function (session, results) {
+    //     if (results.response) {
+    //         session.userData.dependentCare = results.response;
+    //     }
+    //     var message = "Can someone claim you as dependent?";
+    //     logOutgoingMessage(message);
+    //     builder.Prompts.choice(session, message, promptChoices, {
+    //         listStyle: builder.ListStyle.button
+    //     });
+    // },
     function (session, results) {
         session.userData.isDependent = promptChoices[results.response.entity];
         logIncomingMessage(results.response.entity);
