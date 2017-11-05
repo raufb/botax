@@ -368,14 +368,15 @@ bot.dialog('help', [
         confirmPrompt: "This will cancel your current request. Are you sure?"
     });
 
-bot.dialog('household', [
-        function (session) {
-            session.send("HEAD OF HOUSEHOLD is unmarried person who pays more than 50% of the cost of keeping up a home for himself and dependents");
-        }
-    ])
-    .customAction({
-        matches: /^household$/i
-    });
+// bot.dialog('household', [
+//         function (session) {
+//             session.send("HEAD OF HOUSEHOLD is unmarried person who pays more than 50% of the cost of keeping up a home for himself and dependents");
+//         }
+//     ])
+//     .customAction({
+//         matches: /^household$/i,
+//         confirmPrompt: "This will cancel your current request. Are you sure?"
+//     });
 
 
 var menuItems = {
