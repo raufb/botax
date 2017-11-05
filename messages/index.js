@@ -308,6 +308,13 @@ bot.dialog('w4', [
     }
 ])
 
+bot.dialog("w1040", [
+    function (session) {
+        session.send("Sorry. We don't have this option right now. Please choose another option!");
+        session.beginDialog("mainMenu");
+    }
+]);
+
 
 function fillPdf(userInfo) {
     return axios.post('http://13.88.28.1:8443/fillform', userInfo);
