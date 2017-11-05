@@ -346,15 +346,9 @@ bot.dialog('children', [
 
 
 var menuItems = {
-    "Fill W-4 form": {
+    "Fill W4 form": {
         item: "w4"
-    },
-    "Fill W-1040 form": {
-        item: "w1040"
-    },
-    "Ask quesiton": {
-        item: "questions"
-    },
+    }
 }
 
 bot.dialog("/", [
