@@ -348,10 +348,27 @@ bot.dialog('children', [
 var menuItems = {
     "Fill W4 form": {
         item: "w4"
-    }
+    },
+    "Fill W1040 form": {
+        item: "w1040"
+    },
+    "Ask quesiton": {
+        item: "questions"
+    },
 }
 
 
+bot.dialog("cancel", [
+        function (session) {
+            session.beginDialog("mainMenu");
+        }
+    ])
+    .triggerAction({
+        // The user can request this at any time.
+        // Once triggered, it clears the stack and prompts the main menu again.
+        matches: /^cancel$/i,
+        confirmPrompt: "This will cancel your request. Are you sure?"
+    });
 
 bot.dialog("mainMenu", [
         function (session) {
