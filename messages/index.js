@@ -358,7 +358,7 @@ var menuItems = {
 }
 
 
-bot.dialog("mainMenu", [
+bot.dialog("/", [
         function (session) {
             builder.Prompts.choice(session, "Main Menu:", menuItems);
         },
