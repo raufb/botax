@@ -189,7 +189,7 @@ bot.dialog('/', [
     // },
     function (session, results) {
         if (!session.userData.isMarried || !results) {
-            userInfo.spending = promptChoices[results.response.entity];
+            session.userData.spending = promptChoices[results.response.entity];
             logIncomingMessage(results.response.entity);
         }
         var message = "How many kids do you have?";
@@ -197,14 +197,14 @@ bot.dialog('/', [
         builder.Prompts.text(session, message);
     },
     function (session, results) {
-        userInfo.numberOfKids = results.response;
+        session.userData.numberOfKids = results.response;
         logIncomingMessage(results.response);
         var message = "What is your first job income?";
         logOutgoingMessage(message);
         builder.Prompts.text(session, message);
     },
     function (session, results) {
-        userInfo.income_first = results.response;
+        session.userData.income_first = results.response;
         logIncomingMessage(results.response);
         if (session.userData.isMarried) {
             var message = "Do your spouce work? If yes what is her/his income?";
