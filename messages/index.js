@@ -229,12 +229,6 @@ bot.dialog('/', [
         // } else {
         //     next();
         // }
-        next();
-    },
-    function (session, results) {
-        // if (results.response) {
-        //     userInfo.income_second = results.response;
-        // } else {
         if (userInfo.hasMultipleJobs) {
             var message = "What is your second job income?";
             logOutgoingMessage(message);
