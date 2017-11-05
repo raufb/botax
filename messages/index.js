@@ -357,8 +357,13 @@ var menuItems = {
     },
 }
 
-
 bot.dialog("/", [
+    function (session) {
+        session.beginDialog('mainMenu')
+    }
+]);
+
+bot.dialog("mainMenu", [
         function (session) {
             builder.Prompts.choice(session, "Main Menu:", menuItems);
         },
