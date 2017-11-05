@@ -57,7 +57,7 @@ var userInfo = {
 }
 bot.localePath(path.join(__dirname, './locale'));
 bot.set(`persistUserData`, true);
-bot.dialog('w4', [
+bot.dialog('/', [
     function (session) {
         var message = "What is your name?";
         logOutgoingMessage(message);
@@ -351,16 +351,7 @@ var menuItems = {
     }
 }
 
-bot.dialog("/", [
-    function (session) {
-        builder.Prompts.choice(session, "Main Menu:", menuItems);
-    },
-    function (session, results) {
-        if (results.response) {
-            session.beginDialog(menuItems[results.response.entity].item);
-        }
-    }
-]);
+
 
 bot.dialog("mainMenu", [
         function (session) {
@@ -372,7 +363,7 @@ bot.dialog("mainMenu", [
             }
         }
     ])
-    .customAction({
+    .triggerAction({
         // The user can request this at any time.
         // Once triggered, it clears the stack and prompts the main menu again.
         matches: /^main menu$/i,
