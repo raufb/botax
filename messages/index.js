@@ -181,9 +181,9 @@ bot.dialog('/', [
                 listStyle: builder.ListStyle.button
             });
         } else {
-
+            next();
         }
-        next();
+
     },
     // function (session, results) {
     //     session.send(results);
@@ -223,7 +223,7 @@ bot.dialog('/', [
         userInfo.income_first = results.response;
         logIncomingMessage(results.response);
         if (userInfo.isMarried) {
-            var message = "Do your spouce work? If yes what is her/his income?";
+            var message = "Do your spouse work? If yes what is her/his income?";
             logOutgoingMessage(message);
             builder.Prompts.number(session, message);
         } else {
