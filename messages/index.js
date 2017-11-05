@@ -265,22 +265,30 @@ bot.dialog('/', [
         userInfo.name = "SaMM";
         var result = calculate(userInfo);
         session.send(result.name);
-        var pdfFileName = '';
+        var pdfFileName = "";
         fillPdf(result)
             .then(function (response) {
                 pdfFileName = response.data;
                 session.send(pdfFileName);
-                // next();
+                next();
             })
             .catch(function (error) {
                 session.send('error');
-                // next();
+                next();
             });
-
-        // builder.Prompts.text(session, "sdsd");
+        var message = "Do you have any quesitons?";
+        builder.Prompts.choice(session, message, promptChoices, {
+            listStyle: builder.ListStyle.button
+        });
     },
     function (session, results) {
-        var message = `Thank you ${session.userData.name}! Let me know if you need help!`;
+        var ok = promptChoices[results.response.entity];
+        var message = '';
+        if (ok) {
+            message = `Thank you ${session.userData.name}! Let me know if you need help!`;
+        } else {
+            // TODO go to qa
+        }
         session.endDialog();
     }
 ])
