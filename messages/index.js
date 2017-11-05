@@ -203,39 +203,39 @@ bot.dialog('/', [
         logOutgoingMessage(message);
         builder.Prompts.text(session, message);
     },
-    // function (session, results) {
-    //     userInfo.income_first = results.response;
-    //     logIncomingMessage(results.response);
-    //     if (session.userData.isMarried) {
-    //         var message = "Do your spouce work? If yes what is her/his income?";
-    //         logOutgoingMessage(message);
-    //         builder.Prompts.number(session, message);
-    //     } else {
-    //         next();
-    //     }
-    // },
-    // function (session, results) {
-    //     if (results.response) {
-    //         session.userData.income_second = results.response;
-    //     } else {
-    //         if (session.userData.hasMultipleJobs) {
-    //             var message = "What is your second job income?";
-    //             logOutgoingMessage(message);
-    //             builder.Prompts.number(session, message);
-    //         } else {
-    //             session.userData.income_second = 0;
-    //             next();
-    //         }
-    //     }
-    // },
-    // function (session, results) {
-    //     if (!session.userData.income_second && results.response) {
-    //         session.userData.income_second = results.response;
-    //     }
-    //     var message = "How many dependents do you have other than kid dependents?";
-    //     logOutgoingMessage(message);
-    //     builder.Prompts.number(session, message);
-    // },
+    function (session, results) {
+        userInfo.income_first = results.response;
+        logIncomingMessage(results.response);
+        if (session.userData.isMarried) {
+            var message = "Do your spouce work? If yes what is her/his income?";
+            logOutgoingMessage(message);
+            builder.Prompts.number(session, message);
+        } else {
+            next();
+        }
+    },
+    function (session, results) {
+        if (results.response) {
+            session.userData.income_second = results.response;
+        } else {
+            if (session.userData.hasMultipleJobs) {
+                var message = "What is your second job income?";
+                logOutgoingMessage(message);
+                builder.Prompts.number(session, message);
+            } else {
+                session.userData.income_second = 0;
+                next();
+            }
+        }
+    },
+    function (session, results) {
+        if (!session.userData.income_second && results.response) {
+            session.userData.income_second = results.response;
+        }
+        var message = "How many dependents do you have other than kid dependents?";
+        logOutgoingMessage(message);
+        builder.Prompts.number(session, message);
+    },
     // function (session, results) {
     //     session.userData.numberOfOtherDependents = results.response;
     //     if (session.userData.numberOfKids > 0) {
