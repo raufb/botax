@@ -290,9 +290,9 @@ bot.dialog('/', [
         var ok = promptChoices[results.response.entity];
         var message = '';
         if (ok) {
-            message = `Thank you ${session.userData.name}! Let me know if you need help!`;
-        } else {
             // TODO go to qa
+        } else {
+            message = `Thank you ${session.userData.name}! Let me know if you need help!`;
         }
         session.endDialog();
     }
