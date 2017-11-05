@@ -373,7 +373,7 @@ bot.dialog("cancel", [
     .triggerAction({
         // The user can request this at any time.
         // Once triggered, it clears the stack and prompts the main menu again.
-        matches: /^cancel$/i,
+        matches: /^exit$/i,
         confirmPrompt: "This will cancel your request. Are you sure?"
     });
 
