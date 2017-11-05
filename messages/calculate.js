@@ -50,10 +50,10 @@ function calculate(obj) {
         lastname: lastname,
         address: address,
         city: [city, state, zip].join(", "),
-        filingStatus: filingStatus(isMarried, isFilingJointly),
-        isLastnameDiff: isLastnameDiff,
-        total_allowances: total_allowances,
-        additional_amount: additional_amount
+        filingStatus: filingStatus(isMarried, isFilingJointly).toString(),
+        isLastnameDiff: isLastnameDiff.toString(),
+        total_allowances: total_allowances.toString(),
+        additional_amount: additional_amount.toString()
     };
 
     function setHeadOfHousehold(isMarried, spending) {
