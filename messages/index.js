@@ -293,6 +293,7 @@ bot.dialog('/', [
             // TODO go to qa
         } else {
             message = `Thank you ${session.userData.name}! Let me know if you need help!`;
+            session.send(message);
         }
         session.endDialog();
     }
