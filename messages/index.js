@@ -59,7 +59,6 @@ bot.localePath(path.join(__dirname, './locale'));
 bot.set(`persistUserData`, true);
 bot.dialog('/', [
     function (session) {
-        logIncomingMessage(session.userData);
         var message = "What is your name?";
         logOutgoingMessage(message);
         builder.Prompts.text(session, message, {
@@ -386,7 +385,7 @@ function logIncomingMessage(message) {
 }
 
 const logUserConversation = (event) => {
-    logIncomingMessage(event.address.user.id);
+    // logIncomingMessage(event.address.user.id);
 
 };
 
