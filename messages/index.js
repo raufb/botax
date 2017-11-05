@@ -374,7 +374,7 @@ bot.dialog('household', [
         }
     ])
     .customAction({
-        matches: /^*household*$/i
+        matches: /^household$/i
     });
 
 
