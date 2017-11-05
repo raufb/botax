@@ -10,7 +10,7 @@ var path = require('path');
 var axios = require('axios');
 // var pdfFiller = require('pdffiller');
 var useEmulator = (process.env.NODE_ENV == 'development');
-var dashbot = require('dashbot')('W8wcbHLZu8ECDLKqhPBfKRTf5prKYBtI7p3oQAn8').generic;
+var dashbot = require('dashbot')('2qKw1BFKRDK4xPXlEPMpehP0muQI2gMayCZKTShU').generic;
 var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure.BotServiceConnector({
     appId: process.env['MicrosoftAppId'],
     appPassword: process.env['MicrosoftAppPassword'],
