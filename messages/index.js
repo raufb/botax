@@ -57,7 +57,12 @@ var userInfo = {
 }
 bot.localePath(path.join(__dirname, './locale'));
 bot.set(`persistUserData`, true);
-bot.dialog('/', [
+
+bot.dialog("/", [
+    session.beginDialog("mainMenu")
+]);
+
+bot.dialog('w4', [
     function (session) {
         var message = "What is your name?";
         logOutgoingMessage(message);
