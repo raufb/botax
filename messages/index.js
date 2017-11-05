@@ -274,15 +274,16 @@ bot.dialog('/', [
             "total_allowances": "123",
             "additional_amount": "345"
         };
-        fillPdf(result)
-            .then(function (response) {
-                pdfFileName = response.data;
-                session.send(pdfFileName);
-                next();
-            })
-            .catch(function (error) {
-                next();
-            });
+        session.send(result.name);
+        // fillPdf(result)
+        //     .then(function (response) {
+        //         pdfFileName = response.data;
+        //         session.send(pdfFileName);
+        //         next();
+        //     })
+        //     .catch(function (error) {
+        //         next();
+        //     });
 
         // builder.Prompts.text(session, "sdsd");
     },
